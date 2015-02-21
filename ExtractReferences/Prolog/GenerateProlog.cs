@@ -13,19 +13,23 @@ namespace ExtractReferences.Prolog
         public List<ReferencesFact> Facts = new List<ReferencesFact>();
         private string result;
 
-        public void GenerateFromSolution(string solutionPath)
+        public void Generate(params string[] solutionPaths)
         {
-            var referenceSolutionCreator = new SolutionReader(solutionPath);
-            referenceSolutionCreator.GetProjectsBelongingToSolution();
-
-            foreach (var project in referenceSolutionCreator.Solution.Projects)
+            foreach (var solutionPath in solutionPaths)
             {
-                foreach (var reference in project.References)
+                var referenceSolutionCreator = new SolutionReader(solutionPath);
+                referenceSolutionCreator.GetProjectsBelongingToSolution();
+
+                foreach (var project in referenceSolutionCreator.Solution.Projects)
                 {
-                    var fact = new ReferencesFact(project.Name, reference);
-                    Facts.Add(fact);
+                    foreach (var reference in project.References)
+                    {
+                        var fact = new ReferencesFact(project.Name, reference);
+                        Facts.Add(fact);
+                    }
                 }
             }
+            
         }
 
         private void AppendRules()

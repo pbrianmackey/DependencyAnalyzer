@@ -12,6 +12,8 @@ namespace ExtractReferences.Prolog
         public static string TransitiveReference = 
             "transitiveReference(A,C) :- directReference(A,B),directReference(B,C).\n";
         public static string TransitiveReferenceDepth1 =
-            "transitiveReference(A,D) :- directReference(A,B),directReference(B,C),directReference(C,D).\n";
+            "transitiveReferenceD1(A,D) :- transitiveReference(A,C),directReference(C,D).\n";
+        public static string TransitiveReferenceDepth2 =
+            "transitiveReferenceD2(A,E) :- transitiveReferenceD1(A,D),directReference(D,E).\n";
     }
 }
