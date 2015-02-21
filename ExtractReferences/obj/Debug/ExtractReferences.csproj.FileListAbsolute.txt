@@ -1,0 +1,6 @@
+D:\DevProjects\TestProjects\ExtractReferences\bin\Debug\ExtractReferences.exe.config
+D:\DevProjects\TestProjects\ExtractReferences\obj\Debug\ExtractReferences.csprojResolveAssemblyReference.cache
+D:\DevProjects\TestProjects\ExtractReferences\bin\Debug\ExtractReferences.exe
+D:\DevProjects\TestProjects\ExtractReferences\bin\Debug\ExtractReferences.pdb
+D:\DevProjects\TestProjects\ExtractReferences\obj\Debug\ExtractReferences.exe
+D:\DevProjects\TestProjects\ExtractReferences\obj\Debug\ExtractReferences.pdb
