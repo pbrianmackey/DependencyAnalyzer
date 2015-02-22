@@ -1,3 +1,5 @@
+:REM This file is obsolete
+
 @echo off
 set arg1=%1
 set arg2=%2

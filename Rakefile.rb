@@ -28,13 +28,28 @@ task :query, [:arg1, :arg2] do |t, args|
 	#array = [1, 2, 3, 4, 5, 6]
     #array.each { |x| puts x }
 
-    commands.each { |x| 
+    commands.each_with_index{ |x,index| 
     	#puts x
     	stdin, stdout, stderr = Open3.popen3(x)
 		
-		puts stdout.read
-	    unless (err = stderr.read).empty? then 
-	        puts errc
+	    if !(err = stderr.read).empty? then 
+	        puts err
+        else
+        	result = stdout.read
+        	if(result == "true\n") then
+        		case index
+        		when 0
+        			puts "Yes a direct reference was found."
+        		when 1
+        			puts "Yes.  There is a transitive reference"
+        		when 2
+        			puts "Yes. There is a transitive reference depth 2"
+        		when 3
+        			puts "Yes. There is a transitive reference depth 3"
+        		else
+        			puts "No reference found in the chain.  Or too deep in hierarchy to find."
+        		end
+        	end
 	    end
 		
     }
