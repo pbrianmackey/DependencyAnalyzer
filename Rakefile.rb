@@ -22,11 +22,14 @@ task :query, [:arg1, :arg2] do |t, args|
 		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro projectReferences(\'' + args.arg1 + "','" + args.arg2 + "')",
 		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReference(\'' + args.arg1 + "','" + args.arg2 + "')",
 		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD1(\'' + args.arg1 + "','" + args.arg2 + "')",
-		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD2(\'' + args.arg1 + "','" + args.arg2 + "')"
+		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD2(\'' + args.arg1 + "','" + args.arg2 + "')",
+		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceDN(\'' + args.arg1 + "','" + args.arg2 + "')"
 	]
 
 	#array = [1, 2, 3, 4, 5, 6]
     #array.each { |x| puts x }
+
+	foundReference = FALSE
 
     commands.each_with_index{ |x,index| 
     	#puts x
@@ -40,19 +43,30 @@ task :query, [:arg1, :arg2] do |t, args|
         		case index
         		when 0
         			puts "Yes a direct reference was found."
+        			foundReference = TRUE
         		when 1
         			puts "Yes.  There is a transitive reference"
+        			foundReference = TRUE
         		when 2
         			puts "Yes. There is a transitive reference depth 2"
+        			foundReference = TRUE
         		when 3
         			puts "Yes. There is a transitive reference depth 3"
+        			foundReference = TRUE
+        		when 4
+        			puts "Yes. There is a transitive reference at low depth"
+        			foundReference = TRUE
         		else
-        			puts "No reference found in the chain.  Or too deep in hierarchy to find."
+        			puts "Error.  this should never happen."
         		end
         	end
+        	
 	    end
-		
     }
+
+    if(!foundReference)
+		puts "No reference found in the chain.  Or too deep in hierarchy to find."
+	end
 	
 	
 	#stdin, stdout, stderr = Open3.popen3('"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro projectReferences(\'#{args.arg1}\',\'#{args.arg2}\')')
