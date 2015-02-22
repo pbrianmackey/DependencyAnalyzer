@@ -1,8 +1,19 @@
 require 'rake'
 require 'open3'
 
-desc "Usage: rake 'query[projectName,assemblyName]'.  Tells you if a project is referenced by another project somewhere in the chain (direct and transitive)"
-task :query, [:arg1, :arg2] do |t, args|
+#This does not work because Prolog only returns true or false.  consider using ruby-prolog
+desc '(NOT FUNCTIONAL) lists all references for a project'
+task :list, [:project] do |t, args|
+	puts args.project
+	command = '"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro projectReferences(\'' + args.project + "',X)";
+
+	stdin, stdout, stderr = Open3.popen3(command)
+
+	puts stdout.read
+end
+
+desc "Usage: rake 'reference[projectName,assemblyName]'.  Use lower case only.  Tells you if a project is referenced by another project somewhere in the chain (direct and transitive)"
+task :reference, [:arg1, :arg2] do |t, args|
 
 	#puts "Project Name : ";
 	#projectName = STDIN.gets.chomp;
@@ -16,6 +27,8 @@ task :query, [:arg1, :arg2] do |t, args|
 
 	#sh("RunSample.bat #{args.arg1} #{args.arg2}")
 
+	#TODO:  Considering adding more depth.  Test with real projects
+
 	commands = [
 		#'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro a(\'b\',\'c\')',
 		#'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro a(\'' + args.arg1 + "','" + args.arg2 + "')",
@@ -23,7 +36,15 @@ task :query, [:arg1, :arg2] do |t, args|
 		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReference(\'' + args.arg1 + "','" + args.arg2 + "')",
 		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD1(\'' + args.arg1 + "','" + args.arg2 + "')",
 		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD2(\'' + args.arg1 + "','" + args.arg2 + "')",
-		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceDN(\'' + args.arg1 + "','" + args.arg2 + "')"
+		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD3(\'' + args.arg1 + "','" + args.arg2 + "')",
+		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD4(\'' + args.arg1 + "','" + args.arg2 + "')",
+		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD5(\'' + args.arg1 + "','" + args.arg2 + "')",
+		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD6(\'' + args.arg1 + "','" + args.arg2 + "')",
+		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD7(\'' + args.arg1 + "','" + args.arg2 + "')",
+		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD8(\'' + args.arg1 + "','" + args.arg2 + "')",
+		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD9(\'' + args.arg1 + "','" + args.arg2 + "')",
+		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD10(\'' + args.arg1 + "','" + args.arg2 + "')",
+		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceDN(\'' + args.arg1 + "','" + args.arg2 + "')"#this doesn't work.  Recursion broken
 	]
 
 	#array = [1, 2, 3, 4, 5, 6]
@@ -47,38 +68,20 @@ task :query, [:arg1, :arg2] do |t, args|
         		when 1
         			puts "Yes.  There is a transitive reference"
         			foundReference = TRUE
-        		when 2
-        			puts "Yes. There is a transitive reference depth 2"
-        			foundReference = TRUE
-        		when 3
-        			puts "Yes. There is a transitive reference depth 3"
-        			foundReference = TRUE
-        		when 4
-        			puts "Yes. There is a transitive reference at low depth"
+        		when 2..11
+        			puts "Yes. There is a transitive reference depth " + index.to_s
         			foundReference = TRUE
         		else
         			puts "Error.  this should never happen."
         		end
         	end
-        	
+        	if(foundReference) then
+        		break
+        	end
 	    end
     }
 
     if(!foundReference)
 		puts "No reference found in the chain.  Or too deep in hierarchy to find."
 	end
-	
-	
-	#stdin, stdout, stderr = Open3.popen3('"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro projectReferences(\'#{args.arg1}\',\'#{args.arg2}\')')
-	#stdin, stdout, stderr = Open3.popen3('"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReference(\'#{args.arg1}\',\'#{args.arg2}\')')
-	#stdin, stdout, stderr = Open3.popen3('"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD1(\'#{args.arg1}\',\'#{args.arg2}\')')
-	#stdin, stdout, stderr = Open3.popen3('"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD2(\'#{args.arg1}\',\'#{args.arg2}\')')
-	
-
-	#stdin, stdout, stderr = Open3.popen3("RunSample.bat #{args.arg1} #{args.arg2}") 
-
-	#puts stdout.read
-	#puts stderr.gets
-	
-	#exec "RunSample.bat #{args.arg1} #{args.arg2}"
 end
