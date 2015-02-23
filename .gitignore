@@ -8,6 +8,9 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
+/ExtractReferences.vshost.exe.manifest
+bin/
+ExtractReferences/bin/
 
 ## Specific to RubyMotion:
 .dat*
