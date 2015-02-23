@@ -1,11 +1,4 @@
-﻿using System.IO;
-using Microsoft.Build.BuildEngine;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
+﻿using ExtractReferences.Prolog;
 
 namespace ExtractReferences
 {
@@ -13,7 +6,9 @@ namespace ExtractReferences
     {
         static void Main(string[] args)
         {
-            
+            var facts = new GenerateProlog();
+            facts.Generate(GlobalData.Solutions);
+            facts.CreateKnowledgeBase();
         }
     }
 }

@@ -32,26 +32,23 @@ namespace ExtractReferences.Prolog
             
         }
 
-        private void AppendRules()
-        {
-            result += Rules.DirectReference;
-            result += Rules.TransitiveReference;
-        }
-
         public void CreateKnowledgeBase()
         {
+            result += GlobalData.HeaderData;
+            result += GlobalData.TestData;
+
             foreach (var fact in Facts)
             {
                 result += fact.ToString();
             }
 
-            AppendRules();
+            result += GlobalData.Rules;
             WriteToFile();
         }
 
         private void WriteToFile()
         {
-            var outputPath = Path.Combine(GlobalData.ProjectPath, "Sample.pro");
+            var outputPath = Path.Combine(Directory.GetCurrentDirectory(), "Sample.pro");
             var fs = new FileStream(outputPath, FileMode.OpenOrCreate);
             fs.Seek(0, 0);
             fs.SetLength(0);//truncate

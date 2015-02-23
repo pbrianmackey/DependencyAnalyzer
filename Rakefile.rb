@@ -1,6 +1,18 @@
 require 'rake'
 require 'open3'
 
+desc 'Generate Prolog file required for reference lookup.'
+task :generate do
+	command = "ExtractReferences.exe"
+	stdin, stdout, stderr = Open3.popen3(command)
+
+	if !(err = stderr.read).empty? then 
+	        puts err
+    else
+    	result = stdout.read
+    end
+end
+
 #This does not work because Prolog only returns true or false.  consider using ruby-prolog
 desc '(NOT FUNCTIONAL) lists all references for a project'
 task :list, [:project] do |t, args|

@@ -1,3 +1,0 @@
-
-D:\DevProjects\TestProjects>"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro projectReferences('{:arg1',':arg2') 
-false
