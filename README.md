@@ -5,13 +5,20 @@ Dependency Query tool for .NET.  This tool helps you determine if a project refe
 
 1. Make sure you install the dependencies listed below.
 2. Clone this repository to your computer.  Let's call the place you cloned it "C:\CloneRoot"
-3. Update the app.config file to point to all the solutions you want to generate references for:
+3. Addn an app.config.  Update the app.config with your solutions:
 
   ```xml
-  <appSettings>
+ 
+  <?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.1" />
+    </startup>
+   <appSettings>
     <add key="root" value="D:\Projects\"/><!--Optional.  Leave blank if you want to specify full paths or paths do not have a common root -->
     <add key="solutions" value="Path\to\Project\Project.sln,Path2\Project2.sln,And\So\On\blah.sln"/>
   </appSettings>
+</configuration>
   ```
 
 4. Open the command line and change directory to "C:\CloneRoot"
