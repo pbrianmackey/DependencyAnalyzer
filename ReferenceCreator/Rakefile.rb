@@ -1,7 +1,7 @@
 require 'rake'
 require 'open3'
 
-swiplLocation = "D:\Program Files (x86)\swipl\bin\swipl.exe"
+swiplLocation = '"D:\Program Files (x86)\swipl\bin\swipl.exe"'
 desc 'Generate Prolog file required for reference lookup.'
 task :generate do
 	command = "ExtractReferences.exe"

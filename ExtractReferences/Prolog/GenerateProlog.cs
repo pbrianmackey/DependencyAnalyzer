@@ -48,7 +48,7 @@ namespace ExtractReferences.Prolog
 
         private void WriteToFile()
         {
-            var outputPath = Path.Combine(Directory.GetCurrentDirectory(),"ReferenceCreator", "Sample.pro");
+            var outputPath = Path.Combine(Directory.GetCurrentDirectory(), "Sample.pro");
             var fs = new FileStream(outputPath, FileMode.OpenOrCreate);
             fs.Seek(0, 0);
             fs.SetLength(0);//truncate

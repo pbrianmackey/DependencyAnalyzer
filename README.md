@@ -41,6 +41,11 @@ Rake is used to run commands at the command line.  This makes setup a lot easier
 
 A Prolog interpreter.  (Mac uers I recommend installing this program with homebrew: http://brew.sh/)
 
+- Edit "C:\CloneRoot\ReferenceCreator\Rakerile.rb" near the top to match your install location:
+```ruby
+swiplLocation = '"D:\Program Files (x86)\swipl\bin\swipl.exe"' #(note the double quotes)
+```
+
 ##Notes
 - Make root empty in the app.config if you don't have all your solutions in the same place.  Specify full paths for each *.sln file:
 
