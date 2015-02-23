@@ -1,3 +1,4 @@
+#Remember:  When updating this file any files already added to git will need to be removed with : git rm --cached filename.xxx
 *.gem
 *.rbc
 /.config
@@ -13,6 +14,7 @@ TestProject
 Sample.pro
 *.exe.config
 *.vshost.*
+app.config
 
 ## Specific to RubyMotion:
 .dat*
