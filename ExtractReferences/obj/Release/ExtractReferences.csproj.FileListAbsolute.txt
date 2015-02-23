@@ -3,3 +3,4 @@ D:\DevProjects\TestProjects\ExtractReferences\obj\Release\ExtractReferences.exe
 D:\DevProjects\TestProjects\ExtractReferences\obj\Release\ExtractReferences.pdb
 D:\DevProjects\TestProjects\ExtractReferences.exe
 D:\DevProjects\TestProjects\ExtractReferences.pdb
+D:\DevProjects\TestProjects\ExtractReferences\obj\Release\ExtractReferences.csprojResolveAssemblyReference.cache

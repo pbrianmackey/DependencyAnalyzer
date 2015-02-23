@@ -1,7 +1,7 @@
 #Remember:  When updating this file any files already added to git will need to be removed with : git rm --cached filename.xxx
 bin/
 TestProject
-Sample.pro
+/Sample.pro
 *.vshost.*
-app.config
-*.exe.config
+ExtractReferences/app.config
+/ExtractReferences.exe.config
