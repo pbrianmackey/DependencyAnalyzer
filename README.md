@@ -1,5 +1,5 @@
 # DepencyAnalyzer
-Dependency Query tool for .NET
+Dependency Query tool for .NET.  This tool helps you determine if a project references another project somewhere down the line.  It is like a queryable database of references. This is useful for large projects where dependency diagrams can get complex on paper (gigantic UML diagrams per-se). 
 
 ##Getting Started
 
@@ -26,3 +26,11 @@ Rake is used to run commands at the command line.  This makes setup a lot easier
 2. http://www.swi-prolog.org/
 
 A Prolog interpreter.  (Mac uers I recommend installing this program with homebrew: http://brew.sh/)
+
+##Notes
+Make root empty in the app.config if you don't have all your solutions in the same place.  Specify full paths for each *.sln file:
+
+```
+<add key="root" value=""/>
+<add key="solutions" value="C:\Path\to\Project\Project.sln,C:\Path2\Project2.sln,C:\And\So\On\blah.sln"/>
+```
