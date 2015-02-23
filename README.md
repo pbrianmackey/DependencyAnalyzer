@@ -5,12 +5,11 @@ Dependency Query tool for .NET.  This tool helps you determine if a project refe
 
 1. Make sure you install the dependencies listed below.
 2. Clone this repository to your computer.  Let's call the place you cloned it "C:\CloneRoot"
-3. Addn an app.config.  Update the app.config with your solutions:
+3. Add an app.config to the ExtractReferences csproj.  Update the app.config with your solutions:
 
   ```xml
- 
   <?xml version="1.0" encoding="utf-8" ?>
-<configuration>
+  <configuration>
     <startup> 
         <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.1" />
     </startup>
@@ -21,9 +20,10 @@ Dependency Query tool for .NET.  This tool helps you determine if a project refe
 </configuration>
   ```
 
-4. Open the command line and change directory to "C:\CloneRoot"
-5. execute "rake generate" (no quotes).  This creates the required Sample.pro (prolog file.) in "C:\CloneRoot"
-6. execute "rake 'reference[projectName,projectName2]'" or "rake 'reference[projectName,system]'" (where system is a dll)
+4. Build ExtractReferences. (Sorry I would include this exe file, but I haven't been able to get it into github yet)
+5. Open the command line and change directory to "C:\CloneRoot"
+6. execute "rake generate" (no quotes).  This creates the required Sample.pro (prolog file.) in "C:\CloneRoot"
+7. execute "rake 'reference[projectName,projectName2]'" or "rake 'reference[projectName,system]'" (where system is a dll)
 
 ##Dependencies
 1. https://github.com/ruby/rake
