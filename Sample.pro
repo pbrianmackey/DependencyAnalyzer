@@ -16,6 +16,25 @@ main :-
 
 a(b).
 a(b,c).
+projectReferences('myProject', 'system').
+projectReferences('myProject', 'myProject2').
+projectReferences('myProject2', 'myProject3').
+projectReferences('myProject3', 'myProject4').
+projectReferences('myProject4', 'myProject5').
+projectReferences('myProject5', 'myProject6').
+projectReferences('myProject6', 'myProject7').
+projectReferences('myProject7', 'myProject8').
+projectReferences('myProject8', 'myProject9').
+projectReferences('myProject9', 'myProject10').
+projectReferences('myProject10', 'myProject11').
+projectReferences('myProject11', 'myProject12').
+projectReferences('myProject12', 'myProject13').
+projectReferences('myProject13', 'myProject14').
+projectReferences('myProject14', 'myProject15').
+projectReferences('myProject15', 'myProject16').
+projectReferences('myProject16', 'myProject17').
+
+
 
 
 directReference(A,B) :- projectReferences(A,B).

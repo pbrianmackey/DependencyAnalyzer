@@ -45,6 +45,19 @@ namespace ExtractReferences.Msbuild
                 //Console.WriteLine(projectName);
                 //WriteToFile(item.Name);
             }
+
+            var projectReference =
+                from grp in project.ItemGroups.Cast<BuildItemGroup>()
+                from item in grp.Cast<BuildItem>()
+                where item.Name == "ProjectReference"
+                select item;
+
+            foreach (BuildItem item in projectReference)
+            {
+                var name = item.GetMetadata("Name");
+                name = name.StripTrashCharacters();
+                References.Add(name);
+            }
         }
 
         private void ReadProjectName(Project project)
