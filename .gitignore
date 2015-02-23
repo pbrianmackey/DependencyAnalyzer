@@ -11,6 +11,8 @@
 bin/
 TestProject
 Sample.pro
+*.exe.config
+*.vshost.*
 
 ## Specific to RubyMotion:
 .dat*
