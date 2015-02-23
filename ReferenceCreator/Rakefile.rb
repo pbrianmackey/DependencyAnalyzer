@@ -1,6 +1,7 @@
 require 'rake'
 require 'open3'
 
+swiplLocation = "D:\Program Files (x86)\swipl\bin\swipl.exe"
 desc 'Generate Prolog file required for reference lookup.'
 task :generate do
 	command = "ExtractReferences.exe"
@@ -17,7 +18,7 @@ end
 desc '(NOT FUNCTIONAL) lists all references for a project'
 task :list, [:project] do |t, args|
 	puts args.project
-	command = '"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro projectReferences(\'' + args.project + "',X)";
+	command = swiplLocation + ' -q -l .\Sample.pro projectReferences(\'' + args.project + "',X)";
 
 	stdin, stdout, stderr = Open3.popen3(command)
 
@@ -39,24 +40,24 @@ task :reference, [:arg1, :arg2] do |t, args|
 
 	#sh("RunSample.bat #{args.arg1} #{args.arg2}")
 
-	#TODO:  Considering adding more depth.  Test with real projects
+	#TODO:  Considering adding more depth. 
 
 	commands = [
-		#'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro a(\'b\',\'c\')',
-		#'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro a(\'' + args.arg1 + "','" + args.arg2 + "')",
-		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro projectReferences(\'' + args.arg1 + "','" + args.arg2 + "')",
-		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReference(\'' + args.arg1 + "','" + args.arg2 + "')",
-		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD1(\'' + args.arg1 + "','" + args.arg2 + "')",
-		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD2(\'' + args.arg1 + "','" + args.arg2 + "')",
-		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD3(\'' + args.arg1 + "','" + args.arg2 + "')",
-		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD4(\'' + args.arg1 + "','" + args.arg2 + "')",
-		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD5(\'' + args.arg1 + "','" + args.arg2 + "')",
-		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD6(\'' + args.arg1 + "','" + args.arg2 + "')",
-		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD7(\'' + args.arg1 + "','" + args.arg2 + "')",
-		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD8(\'' + args.arg1 + "','" + args.arg2 + "')",
-		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD9(\'' + args.arg1 + "','" + args.arg2 + "')",
-		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceD10(\'' + args.arg1 + "','" + args.arg2 + "')",
-		'"D:\Program Files (x86)\swipl\bin\swipl.exe" -q -l .\Sample.pro transitiveReferenceDN(\'' + args.arg1 + "','" + args.arg2 + "')"#this doesn't work.  Recursion broken
+		#swiplLocation + ' -q -l .\Sample.pro a(\'b\',\'c\')',
+		#swiplLocation + ' -q -l .\Sample.pro a(\'' + args.arg1 + "','" + args.arg2 + "')",
+		swiplLocation + ' -q -l .\Sample.pro projectReferences(\'' + args.arg1 + "','" + args.arg2 + "')",
+		swiplLocation + ' -q -l .\Sample.pro transitiveReference(\'' + args.arg1 + "','" + args.arg2 + "')",
+		swiplLocation + ' -q -l .\Sample.pro transitiveReferenceD1(\'' + args.arg1 + "','" + args.arg2 + "')",
+		swiplLocation + ' -q -l .\Sample.pro transitiveReferenceD2(\'' + args.arg1 + "','" + args.arg2 + "')",
+		swiplLocation + ' -q -l .\Sample.pro transitiveReferenceD3(\'' + args.arg1 + "','" + args.arg2 + "')",
+		swiplLocation + ' -q -l .\Sample.pro transitiveReferenceD4(\'' + args.arg1 + "','" + args.arg2 + "')",
+		swiplLocation + ' -q -l .\Sample.pro transitiveReferenceD5(\'' + args.arg1 + "','" + args.arg2 + "')",
+		swiplLocation + ' -q -l .\Sample.pro transitiveReferenceD6(\'' + args.arg1 + "','" + args.arg2 + "')",
+		swiplLocation + ' -q -l .\Sample.pro transitiveReferenceD7(\'' + args.arg1 + "','" + args.arg2 + "')",
+		swiplLocation + ' -q -l .\Sample.pro transitiveReferenceD8(\'' + args.arg1 + "','" + args.arg2 + "')",
+		swiplLocation + ' -q -l .\Sample.pro transitiveReferenceD9(\'' + args.arg1 + "','" + args.arg2 + "')",
+		swiplLocation + ' -q -l .\Sample.pro transitiveReferenceD10(\'' + args.arg1 + "','" + args.arg2 + "')",
+		swiplLocation + ' -q -l .\Sample.pro transitiveReferenceDN(\'' + args.arg1 + "','" + args.arg2 + "')"#this doesn't work.  Recursion broken
 	]
 
 	#array = [1, 2, 3, 4, 5, 6]
@@ -75,7 +76,7 @@ task :reference, [:arg1, :arg2] do |t, args|
         	if(result == "true\n") then
         		case index
         		when 0
-        			puts "Yes a direct reference was found."
+        			puts "Yes. A direct reference was found."
         			foundReference = TRUE
         		when 1
         			puts "Yes.  There is a transitive reference"
