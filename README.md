@@ -1,4 +1,4 @@
-# DepencyAnalyzer
+# Dependency Analyzer
 Dependency Query tool for .NET.  This tool helps you determine if a project references another project somewhere down the line.  It is like a queryable database of references. This is useful for large projects where dependency diagrams can get complex on paper (gigantic UML diagrams per-se). 
 
 ##Getting Started
